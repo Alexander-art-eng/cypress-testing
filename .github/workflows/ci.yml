@@ -1,49 +1,22 @@
-name: End-to-end tests
+name: End-to-End Testing
 on: push
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
+    name: Artifacts
     steps:
-      # Step 1: Checkout code
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # Step 2: Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18' # Use your project's required Node.js version
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm ci
-
-      # Step 4: Start the application server
-      - name: Start server
-        run: npm run dev
-      
-      # Step 5: Wait for server to be ready
-      - name: Wait for server
-        run: npx wait-on http://localhost:3000
-
-      # Step 6: Run Cypress tests
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          record: false
-          publish-summary: true
-
-      # Step 7: Upload screenshots (on failures)
+      - uses: actions/checkout@v4
+      - uses: cypress-io/github-action@v6
+      # after the test run completes store videos and any screenshots
       - uses: actions/upload-artifact@v4
-        if: failure()
+        # add the line below to store screenshots only on failures
+        # if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-          if-no-files-found: ignore
-
-      # Step 8: Upload videos
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
       - uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
           path: cypress/videos
-          if-no-files-found: ignore
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
