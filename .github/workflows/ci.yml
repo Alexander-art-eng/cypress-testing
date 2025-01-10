@@ -7,10 +7,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: cypress-io/github-action@v6
-      # after the test run completes store videos and any screenshots
+      - name: Start development server
+        run: npm run dev
       - uses: actions/upload-artifact@v4
-        # add the line below to store screenshots only on failures
-        # if: failure()
+        if: failure()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
