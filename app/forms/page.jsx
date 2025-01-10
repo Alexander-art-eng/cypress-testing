@@ -35,30 +35,34 @@ const items = [
 export default function FormsPage(){
     const [inputValue, setInputValue] = useState('')
     const [subMessage, setSubMessage] = useState('')
+
+    const handleSubscription = () => {
+        if(inputValue && !inputValue.includes('.com')) {
+            setSubMessage(`Invalid email: ${inputValue}`)
+        } else if (inputValue.length) {
+            setSubMessage(`Successfully subbed: ${inputValue}`)
+        } else {
+            setSubMessage('Fail')
+        }
+
+        setTimeout(() => {
+            setInputValue('')
+            setSubMessage('')
+        }, 3000);
+    }
     return (
         <main className={styles.main}>
-            <h1 className={styles.header}>Testing Forms</h1>
+            <h1 data-test={'form-header'} className={styles.header}>Testing Forms</h1>
             <ItemsAccordion items={items} />
             <TextField 
+            data-test={'subscribe-form'}
             className={styles.input} 
             label="Email" 
             variant="filled" 
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
             />
-            <Button onClick={() => {
-                if (!inputValue.includes('.com') ){
-                    setSubMessage(`Invalid email: ${inputValue}!`)
-                } else if (inputValue.length){
-                    setSubMessage(`Successfully subbed: ${inputValue}!`)
-                } else {
-                    setSubMessage('fail!')
-                }
-                setTimeout(() => {
-                    setSubMessage('')
-                    setInputValue('');
-                }, 3000)
-            }}>
+            <Button data-test={'subscribe-button'} onClick={handleSubscription}>
                 Subscribe
             </Button>
             {
