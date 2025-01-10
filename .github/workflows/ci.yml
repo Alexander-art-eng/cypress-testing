@@ -3,9 +3,11 @@ on: push
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
-    name: Artifacts
+    name: Run cypress Test
     steps:
       - uses: actions/checkout@v4
+      - name: Start development server
+        run: npm run dev
       - uses: cypress-io/github-action@v6
       - name: Start development server
         run: npm run dev
