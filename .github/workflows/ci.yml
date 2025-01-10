@@ -33,7 +33,7 @@ jobs:
         uses: cypress-io/github-action@v6  # Use the Cypress GitHub Action to run tests
         with:
           record: false  # Do not record the test results to the Cypress Dashboard
-          start: npm start  # Command to start the application before running tests
+          start: npm run dev  # Command to start the application before running tests
           wait-on: http://localhost:3000  # Wait for the application to be available at this URL
           wait-on-timeout: 60  # Maximum time to wait for the application to start (in seconds)
 
