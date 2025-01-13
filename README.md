@@ -1,3 +1,5 @@
+# Project Name
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -17,6 +19,42 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Testing with Cypress
+
+This project includes end-to-end testing using the [Cypress](https://www.cypress.io/) framework. Below are the details of the tests implemented:
+
+### Accordion Component Tests
+
+- **File:** `cypress/component/Accordion.cy.jsx`
+- **Description:** Tests the functionality of the `ItemsAccordion` component.
+- **Key Tests:**
+  - Verifies the number of accordion items.
+  - Checks the visibility toggle of accordion details on click.
+
+### Example Page Tests
+
+- **File:** `cypress/e2e/example.cy.js`
+- **Description:** Contains various example tests for navigation and API interactions.
+- **Key Tests:**
+  - Multi-page navigation testing.
+  - API intercepts and response handling.
+  - Grudge management feature testing.
+
+### Fundamentals Page Tests
+
+- **File:** `cypress/e2e/fundamentals.cy.js`
+- **Description:** Tests the fundamental features of the application.
+- **Key Tests:**
+  - Verifies the header text.
+  - Tests the accordion functionality for visibility toggling.
+
+### Custom Commands
+
+- **File:** `cypress/support/commands.js`
+- **Description:** Defines custom Cypress commands for easier test writing.
+- **Key Command:**
+  - `getDataTest`: A custom command to select elements by `data-test` attribute.
 
 ## Learn More
 
